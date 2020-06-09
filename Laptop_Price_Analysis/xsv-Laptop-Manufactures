@@ -1,0 +1,72 @@
+Last login: Fri Feb 14 00:53:50 on ttys001
+(base) rameshs-MacBook-Air:~ ramesh0101$ pwd
+/Users/ramesh0101
+(base) rameshs-MacBook-Air:~ ramesh0101$ cd downloads
+(base) rameshs-MacBook-Air:downloads ramesh0101$ xsv header Laptop_Dataset_Clean_Done.csv
+Could not match 'header' with any of the allowed variants: ["Cat", "Count", "FixLengths", "Flatten", "Fmt", "Frequency", "Headers", "Help", "Index", "Input", "Join", "Partition", "Sample", "Search", "Select", "Slice", "Sort", "Split", "Stats", "Table"]
+(base) rameshs-MacBook-Air:downloads ramesh0101$ xsv headers Laptop_Dataset_Clean_Done.csv
+1   
+2   Page
+3   Manufacturer
+4   Model_Name
+5   Price_in_USD
+6   Product_Link
+7   CPU
+8   Display_Size
+9   Operating_System
+10  RAM
+11  GPU
+12  Screen_Resolution
+(base) rameshs-MacBook-Air:downloads ramesh0101$ xsv stats Laptop_Dataset_Clean_Done.csv  --everything | xsv table
+field              type     sum                 min                                                                                                                                                                          max                                                                                                                min_length  max_length  mean                stddev             median  mode                                                                                                                                                     cardinality
+                   Integer  5019696             0                                                                                                                                                                            3168                                                                                                               1           4           1584                914.8114559842372  1584    N/A                                                                                                                                                      3169
+Page               Unicode                      https://www.jd.id/category/jual-laptop-875061490.html?searchtype=sh&page=10&pageSize=60&sortType=sort_default_desc                                                           https://www.jd.id/category/jual-laptop-875061490.html?searchtype=sh&page=9&pageSize=60&sortType=sort_default_desc  113         114                                                        https://www.jd.id/category/jual-laptop-875061490.html?searchtype=sh&page=10&pageSize=60&sortType=sort_default_desc                                       12
+Manufacturer       Unicode                      ACE                                                                                                                                                                          ZYREX                                                                                                              1           14                                                         HP                                                                                                                                                       33
+Model_Name         Unicode                      11.6”                                                                                                                                                                        ZENBOOK                                                                                                            1           24                                                         MACBOOK                                                                                                                                                  257
+Price_in_USD       Float    3342048.4700000123  30.14                                                                                                                                                                        3946                                                                                                               5           7           1054.6066487851044  692.4628989206393  882.39  730.68                                                                                                                                                   629
+Product_Link       Unicode                      //www.jd.id/product/15-6inch-6-gb-ram-64gb-ssd-320gb-hdd-windows-10-system-apollo-lake-quad-core-1920-1080-fhd-ips-laptop-screen-ultrabook-notebook_51056945/502311013.html  //www.jd.id/product/zyrex-sky-360-13-3-intel-celeron-silver-microsoft-office365-personal_11658743/103822646.html   60          213                                                        //www.jd.id/product/toshiba-tecra-x40-d114-14-hd-intel-core-i7-7500u-16gb-512-gb-ssd-intel-hd-graphics-620-win-10-pro-dark-blue_11707606/103882978.html  745
+CPU                Unicode                      ARM                                                                                                                                                                          NVIDIA                                                                                                             3           6                                                          NVIDIA                                                                                                                                                   3
+Display_Size       Unicode                      "13"""                                                                                                                                                                       "17"""                                                                                                             3           5                                                          "14"""                                                                                                                                                   5
+Operating_System   Unicode                      LINUX                                                                                                                                                                        WINDOWS                                                                                                            5           7                                                          LINUX                                                                                                                                                    3
+RAM                Unicode                      12GB                                                                                                                                                                         8GB                                                                                                                3           4                                                          32GB                                                                                                                                                     5
+GPU                Unicode                      AMD                                                                                                                                                                          NVIDIA                                                                                                             3           6                                                          AMD                                                                                                                                                      4
+Screen_Resolution  Unicode                      1280 x 720                                                                                                                                                                   7680 x 4320                                                                                                        10          11                                                         7680 x 4320                                                                                                                                              5
+(base) rameshs-MacBook-Air:downloads ramesh0101$ xsv stats --select Price_in_USD Laptop_Dataset_Clean_Done.csv | xsv table
+field         type   sum                 min    max   min_length  max_length  mean                stddev
+Price_in_USD  Float  3342048.4700000123  30.14  3946  5           7           1054.6066487851044  692.4628989206393
+(base) rameshs-MacBook-Air:downloads ramesh0101$ sv frequency --select Manufacturer,Model_Name,RAM,GPU Laptop_Dataset_Clean_Done.csv
+-bash: sv: command not found
+(base) rameshs-MacBook-Air:downloads ramesh0101$ sv frequency --select Manufacturer,Model_Name,RAM,GPU Laptop_Dataset_Clean_Done.csv
+-bash: sv: command not found
+(base) rameshs-MacBook-Air:downloads ramesh0101$ xsv frequency --select Manufacturer,Model_Name,RAM,GPU Laptop_Dataset_Clean_Done.csv
+field,value,count
+Manufacturer,HP,628
+Manufacturer,DELL,458
+Manufacturer,LENOVO,452
+Manufacturer,ASUS,406
+Manufacturer,APPLE,323
+Manufacturer,ACER,174
+Manufacturer,MSI,152
+Manufacturer,THINKPAD,133
+Manufacturer,GIGABYTE,94
+Manufacturer,AVITA,91
+Model_Name,MACBOOK,323
+Model_Name,IDEAPAD,216
+Model_Name,INSPIRON,205
+Model_Name,LATITUDE,114
+Model_Name,YOGA,112
+Model_Name,LIBER,91
+Model_Name,GAMING,67
+Model_Name,SPECTRE,57
+Model_Name,LEGION,51
+Model_Name,SABRE,43
+RAM,32GB,651
+RAM,4GB,643
+RAM,16GB,642
+RAM,12GB,635
+RAM,8GB,598
+GPU,AMD,816
+GPU,NVIDIA,801
+GPU,ARM,791
+GPU,INTEL,761
+(base) rameshs-MacBook-Air:downloads ramesh0101$ 
